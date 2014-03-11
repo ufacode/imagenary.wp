@@ -1,0 +1,105 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Imagenary.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,0">
+            <TextBlock Text="IMAGENARY" Style="{StaticResource PhoneTextNormalStyle}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1">
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Margin="12,12,12,11">
+
+                        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="48" VerticalAlignment="Top" Height="68"
+                                   Text="aomega.co">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <i:InvokeCommandAction Command="{Binding OpenSiteCommand}"></i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBlock>
+
+                        <Image Source="/Assets/images/aomega.png" Width="200">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <i:InvokeCommandAction Command="{Binding OpenSiteCommand}"></i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock 
+                            FontWeight="Bold" FontSize="24"
+                            Text="version" />
+
+                            <TextBlock Text="{Binding Version}"
+                                       FontWeight="Bold" FontSize="24" Margin="10,0,0,0"/>
+                        </StackPanel>
+
+                        <Grid HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Text="developer: Alexandr Zaozerskiy"/>
+                            <TextBlock Grid.Row="1">
+                                <TextBlock.Text>twitter: @AlexandrYZ</TextBlock.Text>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Tap">
+                                        <i:InvokeCommandAction Command="{Binding TwitterCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBlock>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <Button Grid.Column="0"
+                            Content="Rate &amp; review"
+                            Command="{Binding RateAndReviewCommand}"/>
+                    <Button Content="Send feedback"
+                            Command="{Binding SendFeedbackCommand}"/>
+                    <Button Grid.Column="0"
+                            Content="More apps"
+                            Command="{Binding MoreAppsCommand}"/>
+
+                    <toolkit:ToggleSwitch x:Name="LocationSwitch"
+                                  IsChecked="{Binding LocationServicesGranted}"
+                                  Header="{Binding AppResources.locationTitle, Source={StaticResource LocalizedStrings}}" />
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

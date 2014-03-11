@@ -1,0 +1,57 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Imagenary.Views.PhotoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.RowSpan="2" VerticalAlignment="Center">
+            <StackPanel>
+                <Image x:Name="PostPhoto" RenderTransformOrigin="0.5,0.5" />
+                <Grid Background="#18D6D6D6" Canvas.ZIndex="1" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                    	<RowDefinition/>
+                    	<RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                    	<ColumnDefinition Width="50*"/>
+                    	<ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                	<TextBlock Grid.Row="0" Grid.Column="0"
+                		HorizontalAlignment="Left"
+                		TextWrapping="Wrap"
+                		Text="{Binding Author}"
+                		VerticalAlignment="Top">
+                		<TextBlock.Foreground>
+                			<SolidColorBrush Color="{StaticResource PinkColor}"/>
+                		</TextBlock.Foreground>
+                	</TextBlock>
+                	<TextBlock Grid.Row="0" Grid.Column="1"
+                		HorizontalAlignment="Right"
+                		TextWrapping="Wrap"
+                		Text="{Binding CreatedAt, StringFormat=// dd.MM.yyyy HH:mm}"
+                		VerticalAlignment="Top"/>
+                	<TextBlock HorizontalAlignment="Left"
+                		TextWrapping="Wrap"
+                		Text="{Binding Comment}"
+                		VerticalAlignment="Top"
+                		Grid.Row="1" Grid.ColumnSpan="2" Margin="0,3,0,0"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>
